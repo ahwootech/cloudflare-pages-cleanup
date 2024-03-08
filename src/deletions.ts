@@ -46,7 +46,7 @@ export async function executeDeletions(
   project.allDeployments
     .filter((deployment) => deployment.rule)
     .forEach(async (deployment) => {
-      const deleteURL = deploymentURL(project.name) + "/" + deployment.id;
+      const deleteURL = deploymentURL(project.name) + "/" + deployment.id + "?force=true";
       console.log("DELETE " + deleteURL);
       const response = fetch(deleteURL, {
         method: "DELETE",

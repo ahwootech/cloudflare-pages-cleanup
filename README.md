@@ -25,7 +25,7 @@ The steps to configure the worker are:
    `npx wrangler secret put CLOUDFLARE_API_TOKEN`
 6. Approve or edit the [configuration](#configuration) starting at line 10 of the `wrangler.toml` file 
 7. Optional: Change the schedule of the worker at line 55 of the `wrangler.toml` file
-8. Publish the worker by running `npm run publish`.
+8. Publish the worker by running `npm wrangler deploy`.
 9. Optional: Manually triggered test: run `npx wrangler tail` to watch the worker's output. In another window, trigger the cleanup manually by running `curl -s https://https://cloudflare_pages_cleanup.[your-subdomain].workers.dev`. The correct URL for your subdomain is shown as part of the output from step 8.
 
 ## Configuration

@@ -7,7 +7,7 @@ compatibility_date = "2022-09-04"
 # See README.md for details
 
 [vars]
-project_id="round-robin" # name of one project to clean. Leave empty to clean all your projects.
+project_id="ahwoo-localhost" # name of one project to clean. Leave empty to clean all your projects.
                          # Cleaning all projects might not fit into the CPU limits of your plan.
                          # If you are on a free or bundled plan, you can set project_id to 
                          # "round-robin" and the cron trigger to "0 * * * *" to clean
@@ -22,8 +22,8 @@ config="""
                          # as no "branches" or "projects" are defined, 
                          # this is a catch all for any deployment 
 name = "Old Cleanup"     # optional, a name for debugging
-maxVersions = 10         # delete any deployments over 10 versions on any branch of any project...
-# maxDays = 30             # for anything over 30 days
+maxVersions = 2          # delete any deployments over 10 versions on any branch of any project...
+# maxDays = 30           # for anything over 30 days
 
 # What follows are examples for more elaborated rules.
 # Remember to insert such rules above the catch all rule if you want them to take effect.
@@ -31,25 +31,14 @@ maxVersions = 10         # delete any deployments over 10 versions on any branch
 
 [[rules]]                # This rule will prevent deletion of deployments 
                          # for the main branch of the blog project
-name = "blog_production" # optional, a name for debugging
-projects = "blog"        # only for the "blog" project
-branches = ["main", "master"] # matches the main or master branch
+name = "main_branch"     # optional, a name for debugging
+projects = "ahwoo-localhost"        # only for the "blog" project
+branches = ["main"]      # matches the main or master branch
 maxDays = inf            # can be omitted: do not delete deployments based on age
-maxVersions = inf        # can be omitted: do not delete deployments based on number of versions 
-
-[[rules]]                # All other projects main branches
-projects = ".*"          # can be omitted: matches all projects
-branches = ["main", "master"] # matches the main or master branch
-maxDays = 90             # keep everything younger than 90 days, (no limit on number of versions)
-
-[[rules]]                # for all bugfix branches of the plugin projects
-name = "bugfix"          # optional, a name for debugging
-projects = ".*-plugin"   # matches all projects where the name ends with "-plugin"
-branches = "bug-.*"      # matches all branches where the name starts with "bug-"
-maxVersions = 5          # keep at most 5 versions, no matter how old
+maxVersions = 2        # can be omitted: do not delete deployments based on number of versions 
 
 """
 
 [triggers]
 # will run every sunday at noon, clean a new project every minute
-crons = [ "* 12 * * sun" ]
+crons = [ "0 */1 * * *" ]

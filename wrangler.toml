@@ -19,10 +19,11 @@ project_id="ahwoo-localhost" # name of one project to clean. Leave empty to clea
 config="""
    
 [[rules]]                # the default rule
-                         # as no "branches" or "projects" are defined, 
+                         # as no "branches" are defined, 
                          # this is a catch all for any deployment 
 name = "Old Cleanup"     # optional, a name for debugging
-maxVersions = 2          # delete any deployments over 10 versions on any branch of any project...
+projects = "ahwoo-localhost"
+maxVersions = 2          # delete any deployments over 2 versions on any branch of any project...
 # maxDays = 30           # for anything over 30 days
 
 # What follows are examples for more elaborated rules.
@@ -41,4 +42,4 @@ maxVersions = 2        # can be omitted: do not delete deployments based on numb
 
 [triggers]
 # will run every sunday at noon, clean a new project every minute
-crons = [ "0 */1 * * *" ]
+crons = [ "0 */6 * * *" ]

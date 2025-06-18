@@ -5,7 +5,7 @@
   "main": "src/index.ts",
   "scripts": {
     "dev": "npx wrangler dev --local",
-    "publish": "npx wrangler publish"
+    "publish": "npx wrangler deploy"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20240222.0",
